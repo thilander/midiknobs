@@ -3,9 +3,9 @@
 #define nbrButtons 5
 
 byte lastCommand = 0;
-int potPins[10] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9};
+int potPins[10] = {A0, A1, A2, A3, A4, A5, A6, A7, A9, A10};
 
-int buttonPins[5] = {4, 5, 6, 7, 8};
+int buttonPins[5] = {12, 11, 10, 7, 5};
 int prevButtonPinStates[5] = {HIGH};
 int buttonPinStates[5] = {HIGH};
  
