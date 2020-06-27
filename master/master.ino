@@ -5,7 +5,6 @@
 #define nbrLocalPots 0
 #define nbrSlaveButtons 5
 #define nbrLocalButtons 5
-#define debug 0
 
 // list of undefined MIDI CC 
 // https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
