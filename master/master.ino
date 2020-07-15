@@ -1,14 +1,10 @@
 #include <Wire.h>
 #include "MIDIUSB.h"
+#include "config.h"
 
-#define nbrSlavePots 1
-#define nbrLocalPots 0
-#define nbrSlaveButtons 5
-#define nbrLocalButtons 5
-
-// list of undefined MIDI CC 
+// list of undefined MIDI CC
 // https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
-int undefinedCCList[39] = {3, 9, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 85, 86, 87, 89, 90, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119}; 
+int undefinedCCList[39] = {3, 9, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 85, 86, 87, 89, 90, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119};
 
 int buttonPins[5] = {12, 11, 10, 7, 5};
 int prevButtonPinStates[10] = {HIGH};
@@ -74,7 +70,7 @@ void getLocalButtonPinValues() {
 
 void sendMidiForChanges() {
   int nbrPots = nbrLocalPots + nbrSlavePots;
-  
+
   for (int i = 0; i < nbrPots; i++) {
     if (currentPotValues[i] != prevPotValues[i]) {
       Serial.print("pot at index: ");
@@ -104,13 +100,13 @@ void sendMidiForChanges() {
     }
   }
 }
- 
+
 void loop() {
   getLocalPotValues();
   getSlavePotValues();
   getLocalButtonPinValues();
   getSlaveButtonValues();
   sendMidiForChanges();
-  delay(1);  
+  delay(1);
 }
- 
+

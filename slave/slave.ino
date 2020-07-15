@@ -1,6 +1,6 @@
 #include <Wire.h>
+#include "config.h"
 
-#define nbrButtons 5
 
 byte lastCommand = 0;
 int potPins[10] = {A0, A1, A2, A3, A4, A5, A6, A7, A9, A10};
@@ -8,7 +8,7 @@ int potPins[10] = {A0, A1, A2, A3, A4, A5, A6, A7, A9, A10};
 int buttonPins[5] = {12, 11, 10, 7, 5};
 int prevButtonPinStates[5] = {HIGH};
 int buttonPinStates[5] = {HIGH};
- 
+
 void setup() {
   Wire.begin(1);
   for (int i = 0; i < nbrButtons; i++) {
@@ -22,7 +22,7 @@ void getLocalButtonPinValues() {
   for (int i = 0; i < 5; i++) {
     buttonPinStates[i] = digitalRead(buttonPins[i]);
     if (buttonPinStates[i] != prevButtonPinStates[i]) {
-      prevButtonPinStates[i] = buttonPinStates[i];      
+      prevButtonPinStates[i] = buttonPinStates[i];
       delay(20);
     }
   }
@@ -32,11 +32,11 @@ void loop(){
   getLocalButtonPinValues();
   delay(100);
 }
- 
+
 void recieveEvent(int howMany) {
   lastCommand = Wire.read();
 }
- 
+
 void requestEvent() {
   if (lastCommand == 1) {
     byte potValues[10] = {0};
@@ -55,4 +55,4 @@ void requestEvent() {
   }
   lastCommand = 0;
 }
- 
+
